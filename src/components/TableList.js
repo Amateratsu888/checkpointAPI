@@ -1,20 +1,17 @@
-import React from 'react'
+import React,{ useEffect, useState } from 'react'
 import TableRow from './TableRow'
-import { useEffect, useState } from 'react'
 import axios from 'axios'
 const TableList = () => {
     const [data, setData] = useState([])
+    const fetchData = async () => {
+        const response = await axios(
+            'https://jsonplaceholder.typicode.com/users',
+        )
+        setData(response.data)
 
+    }
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios(
-                'https://jsonplaceholder.typicode.com/users',
-            )
-            setData(response.data)
-
-        }
         fetchData()
-
     }, [])
 
 
